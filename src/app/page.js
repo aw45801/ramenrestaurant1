@@ -74,24 +74,19 @@ useEffect(() => {
         <div style={{
   display: "flex",
   alignItems: "center",
-  width: isMobile ? "60%" : "25%",
+  width: isMobile ? "70%" : "25%",
   padding: "0 10px",
   justifyContent: isMobile ? "flex-start" : "center",
   borderRight: isMobile ? "none" : "1px solid rgba(255,255,255,1)",
   height: "100%",
-  overflow: "hidden",
 }}>
   <span className={cinzel.className} style={{
     color: "white",
-    fontSize: "22px",
+    fontSize: isSmallScreen ? "14px" : isMobile ? "18px" : "22px",
     letterSpacing: "1px",
     whiteSpace: "nowrap",
     textShadow: "2px 2px 8px rgba(0,0,0,0.8)",
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    maxWidth: "100%",
-    display: "block",
-    fontWeight: "600"
+    fontWeight: "600",
   }}>
     Miso Ramen House
   </span>
@@ -363,57 +358,65 @@ useEffect(() => {
         }}/>
 
         {/* Social Icons */}
-        <div style={{
-          position: "absolute",
-          bottom: "40px",
-          right: "40px",
-          display: "flex",
-          gap: "12px",
-          zIndex: 5,
-        }}>
-          {[
-            { hover: fbHover, setHover: setFbHover, icon: <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="white"/> },
-            { hover: xHover, setHover: setXHover, icon: <path d="M4 4l16 16M20 4L4 20" stroke="white" strokeWidth="2" strokeLinecap="round"/> },
-            { hover: igHover, setHover: setIgHover, icon: <><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="white" strokeWidth="2" fill="none"/><circle cx="12" cy="12" r="4" stroke="white" strokeWidth="2" fill="none"/><circle cx="17.5" cy="6.5" r="1" fill="white"/></> },
-          ].map((s, i) => (
-            <a key={i} href="#"
-              onMouseEnter={() => s.setHover(true)}
-              onMouseLeave={() => s.setHover(false)}
-              style={{
-                width: isMobile ? "32px" : "38px",
-                height: isMobile ? "32px" : "38px",
-                border: `1px solid ${s.hover ? "#ff4444" : "white"}`,
-                backgroundColor: s.hover ? "#ff4444" : "transparent",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                transition: "all 0.3s ease",
-              }}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">{s.icon}</svg>
-            </a>
-          ))}
-        </div>
-{/* Stats */}
+{/* Bottom bar - stats and icons */}
 <div style={{
   position: "absolute",
-  bottom: "40px",
-  left: "40px",
+  bottom: "20px",
+  left: "20px",
+  right: "20px",
   display: "flex",
-  gap: isMobile ? "20px" : "50px",
+  flexDirection: isSmallScreen ? "column" : "row",
+  justifyContent: "space-between",
+  alignItems: isSmallScreen ? "flex-start" : "center",
+  gap: isSmallScreen ? "12px" : "0",
   zIndex: 5,
 }}>
-  {[
-    { number: "10K+", label: "Customers Served" },
-    { number: "25+", label: "Signature Dishes" },
-    { number: "15+", label: "Years of Experience" },
-  ].map((stat) => (
-<div key={stat.label} style={{ textAlign: "center" }}>
-  <p className={playfair.className} style={{ color: "white", fontSize: isMobile ? "clamp(10px, 3vw, 20px)" : "40px", fontWeight: "700", margin: 0, textShadow: "2px 2px 8px rgba(0,0,0,0.9)", letterSpacing: "0px" }}>
-    {stat.number}
-  </p>
-  <p className={cinzel.className} style={{ color: "rgba(255,255,255,0.8)", fontSize: isMobile ? "clamp(6px, 1.5vw, 10px)" : "10px", fontWeight: "600", margin: 0, marginTop: "4px", letterSpacing: "0px", textShadow: "1px 1px 6px rgba(0,0,0,0.9)", textTransform: "uppercase" }}>
-    {stat.label}
-  </p>
-</div>
-  ))}
+  {/* Stats */}
+  <div style={{
+    display: "flex",
+    gap: isMobile ? "20px" : "50px",
+  }}>
+    {[
+      { number: "10K+", label: "Customers Served" },
+      { number: "25+", label: "Signature Dishes" },
+      { number: "15+", label: "Years of Experience" },
+    ].map((stat) => (
+      <div key={stat.label} style={{ textAlign: "center" }}>
+        <p className={playfair.className} style={{ color: "white", fontSize: isMobile ? "clamp(10px, 3vw, 20px)" : "40px", fontWeight: "700", margin: 0, textShadow: "2px 2px 8px rgba(0,0,0,0.9)", letterSpacing: "0px" }}>
+          {stat.number}
+        </p>
+        <p className={cinzel.className} style={{ color: "rgba(255,255,255,0.8)", fontSize: isMobile ? "clamp(6px, 1.5vw, 10px)" : "10px", fontWeight: "600", margin: 0, marginTop: "4px", letterSpacing: "0px", textShadow: "1px 1px 6px rgba(0,0,0,0.9)", textTransform: "uppercase" }}>
+          {stat.label}
+        </p>
+      </div>
+    ))}
+  </div>
+
+  {/* Social Icons */}
+  <div style={{
+    display: "flex",
+    gap: "12px",
+  }}>
+    {[
+      { hover: fbHover, setHover: setFbHover, icon: <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="white"/> },
+      { hover: xHover, setHover: setXHover, icon: <path d="M4 4l16 16M20 4L4 20" stroke="white" strokeWidth="2" strokeLinecap="round"/> },
+      { hover: igHover, setHover: setIgHover, icon: <><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="white" strokeWidth="2" fill="none"/><circle cx="12" cy="12" r="4" stroke="white" strokeWidth="2" fill="none"/><circle cx="17.5" cy="6.5" r="1" fill="white"/></> },
+    ].map((s, i) => (
+      <a key={i} href="#"
+        onMouseEnter={() => s.setHover(true)}
+        onMouseLeave={() => s.setHover(false)}
+        style={{
+          width: isMobile ? "32px" : "38px",
+          height: isMobile ? "32px" : "38px",
+          border: `1px solid ${s.hover ? "#ff4444" : "white"}`,
+          backgroundColor: s.hover ? "#ff4444" : "transparent",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          transition: "all 0.3s ease",
+        }}>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">{s.icon}</svg>
+      </a>
+    ))}
+  </div>
 </div>
       </div>
 

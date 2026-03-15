@@ -405,14 +405,14 @@ useEffect(() => {
     { number: "25+", label: "Signature Dishes" },
     { number: "15+", label: "Years of Experience" },
   ].map((stat) => (
-    <div key={stat.label} style={{ textAlign: "center" }}>
-      <p className={playfair.className} style={{ color: "white", fontSize: isMobile ? "20px" : "40px", fontWeight: "700", margin: 0, textShadow: "2px 2px 8px rgba(0,0,0,0.9)", letterSpacing: "2px" }}>
-        {stat.number}
-      </p>
-      <p className={cinzel.className} style={{ color: "rgba(255,255,255,0.8)", fontSize: isMobile ? "9px" : "10px", fontWeight: "600", margin: 0, marginTop: "4px", letterSpacing: "0px", textShadow: "1px 1px 6px rgba(0,0,0,0.9)", textTransform: "uppercase" }}>
-        {stat.label}
-      </p>
-    </div>
+<div key={stat.label} style={{ textAlign: "center" }}>
+  <p className={playfair.className} style={{ color: "white", fontSize: isMobile ? "clamp(10px, 3vw, 20px)" : "40px", fontWeight: "700", margin: 0, textShadow: "2px 2px 8px rgba(0,0,0,0.9)", letterSpacing: "0px" }}>
+    {stat.number}
+  </p>
+  <p className={cinzel.className} style={{ color: "rgba(255,255,255,0.8)", fontSize: isMobile ? "clamp(6px, 1.5vw, 10px)" : "10px", fontWeight: "600", margin: 0, marginTop: "4px", letterSpacing: "0px", textShadow: "1px 1px 6px rgba(0,0,0,0.9)", textTransform: "uppercase" }}>
+    {stat.label}
+  </p>
+</div>
   ))}
 </div>
       </div>
